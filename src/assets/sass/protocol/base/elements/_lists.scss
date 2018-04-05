@@ -7,35 +7,46 @@
 
 // We most frequently use lists for semantic structure and don't actually
 // want to display them as lists. It's simpler to reset lists globally
-// and only display them as lists in text when needed with the .prose class.
+// and only display them as lists in text when needed with the .mzp-u-list-styled class.
 ul, ol {
     list-style: none;
 }
 
-ul.prose {
-    list-style: disc;
-    margin-left: 30px;
+ul.mzp-u-list-styled {
+//    list-style: disc;
+    margin-left: $layout-sm;
 
     li {
         margin-bottom: .25em;
+
+        &:before {
+            content: '•';
+            float: left;
+            font-size: 1.25em;
+            line-height: 1.25;
+            margin-left: -$layout-xs;
+        }
     }
 
     ul {
-        list-style: circle;
-        margin-left: 20px;
+        margin-left: $layout-xs;
         margin-bottom: 0;
+
+        li:before {
+            content: '\25e6';
+        }
     }
 
     ol {
         list-style: decimal;
-        margin-left: 20px;
+        margin-left: $layout-xs;
         margin-bottom: 0;
     }
 }
 
-ol.prose {
+ol.mzp-u-list-styled {
     list-style: decimal;
-    margin-left: 30px;
+    margin-left: $layout-sm;
 
     li {
         margin-bottom: .25em;
@@ -43,7 +54,7 @@ ol.prose {
 
     ol {
         list-style: lower-alpha;
-        margin-left: 20px;
+        margin-left: $layout-xs;
         margin-bottom: 0;
     }
 
@@ -55,30 +66,35 @@ ol.prose {
 }
 
 [dir='rtl'] {
-    ul.prose,
-    ol.prose {
+    ul.mzp-u-list-styled,
+    ol.mzp-u-list-styled {
         margin-left: 0;
-        margin-right: 30px;
+        margin-right: $layout-sm;
+
+        li:before {
+            float: right;
+            margin-left: 0;
+            margin-right: -$layout-xs;
+        }
 
         ul,
         ol {
             margin-left: 0;
-            margin-right: 20px;
+            margin-right: $layout-xs;
         }
     }
 }
 
 /* !important required for print stylesheet overrides */
-/* stylelint-disable declaration-no-important  */
-.mzp-u-unstyled {
-    list-style: none !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+.mzp-u-list-unstyled {
+    list-style: none !important; /* stylelint-disable-line declaration-no-important */
+    margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
+    margin-right: 0 !important; /* stylelint-disable-line declaration-no-important */
 
     ul,
     ol {
-        list-style: none !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
+        list-style: none !important; /* stylelint-disable-line declaration-no-important */
+        margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
+        margin-right: 0 !important; /* stylelint-disable-line declaration-no-important */
     }
 }

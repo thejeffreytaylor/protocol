@@ -1,0 +1,701 @@
+@import '../protocol/includes/lib';
+@import '../protocol/protocol';
+
+
+//-- Just placeholders
+// Make things visible
+.mzp-qa-visible {
+    outline: 1px dotted rgba(0, 0, 0, .25);
+    background: rgba(0, 0, 0, .05);
+}
+
+// .mzp-c-menu,
+// .mzp-c-menu-title,
+// .mzp-c-menu li {
+//     @extend .mzp-qa-visible;
+// }
+// -->
+
+.mzp-c-article-title {
+    @include text-display-level1;
+}
+
+.mzp-c-article-intro {
+    @include text-body-level1;
+}
+
+// Step down the heading levels
+.mzp-c-article {
+    h2 {
+        @include text-display-level3;
+    }
+
+    h3 {
+        @include text-display-level4;
+    }
+
+    h4 {
+        @include text-body-level1;
+    }
+}
+
+// Article links... is this a component?
+.mzp-c-article-links {
+    list-style: none;
+    margin-bottom: 0;
+
+    li {
+        margin-bottom: 1.5em;
+    }
+
+    h4 {
+        @include open-sans;
+    }
+
+    a {
+        color: $color-text-primary;
+        text-decoration: underline;
+
+        &:hover,
+        &:focus {
+            color: $color-link;
+        }
+    }
+}
+
+@media #{$media-md} {
+    @supports (display: grid) {
+        .mzp-c-article-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-column-gap: $gutter-width;
+        }
+    }
+}
+
+// Sidebar menu
+.mzp-c-sidemenu {
+    .mzp-c-sidemenu-title {
+        @include open-sans;
+        @include text-body-level2;
+        margin-bottom: .25em;
+        line-height: 1.5;
+
+        a {
+            padding: .25em $spacing-md;
+        }
+    }
+
+    ul {
+        margin: 0;
+    }
+
+    li {
+        margin-bottom: .25em;
+    }
+
+    a {
+        border-radius: 4px;
+        display: block;
+        padding: .25em $spacing-lg;
+        transition: background-color 100ms ease-in;
+
+        &:hover,
+        &:focus {
+            background-color: $color-gray-light;
+        }
+    }
+}
+
+
+@media #{$media-md} {
+    .mzp-has-sidebar {
+        .mzp-c-article {
+            @include grid-two-thirds;
+        }
+
+        .mzp-l-sidebar {
+            @include grid-third;
+        }
+    }
+
+    .mzp-l-sidebar-right {
+        .mzp-c-article {
+            float: left;
+            padding-right: $spacing-md;
+        }
+
+        .mzp-l-sidebar {
+            float: right;
+            padding-left: $spacing-md;
+        }
+    }
+
+    .mzp-l-sidebar-left {
+        .mzp-c-article {
+            float: right;
+            padding-left: $spacing-md;
+        }
+
+        .mzp-l-sidebar {
+            float: left;
+            padding-right: $spacing-md;
+        }
+    }
+
+
+    // @supports (display: grid) {
+    //     .mzp-has-sidebar {
+    //         display: grid;
+    //         grid-column-gap: 30px;
+    //         grid-template-columns: repeat(3, 1fr);
+    //         // grid-template-columns: [main] 1fr [sidebar] 400px;
+
+    //         &.mzp-l-sidebar-right {
+    //             grid-template-areas: 'main main sidebar';
+    //         }
+
+    //         &.mzp-l-sidebar-left {
+    //             grid-template-areas: 'sidebar main main';
+    //         }
+
+    //         .mzp-c-article {
+    //             grid-area: main;
+    //         }
+
+    //         .mzp-c-sidebar {
+    //             grid-area: sidebar;
+    //         }
+    //     }
+    // }
+
+}
+
+@media #{$media-lg} {
+    .mzp-has-sidebar {
+        .mzp-c-article {
+            @include grid-three-quarters;
+        }
+
+        .mzp-l-sidebar {
+            @include grid-quarter;
+        }
+    }
+}
+
+
+
+//* Pebbles legacy stuff, just for demo ----------------------------------*/
+
+// Media queries
+$mq-phone:          'screen and (max-width: 480px)';
+$mq-phone-wide:     'screen and (min-width: 480px)';
+$mq-tablet:         'screen and (min-width: 760px)';
+$mq-desktop:        'screen and (min-width: 1000px)';
+$mq-desktop-wide:   'screen and (min-width: 1400px)';
+
+// Content widths
+$width-phone:           300px;
+$width-phone-wide:      460px;
+$width-tablet:          740px;
+$width-desktop:         980px;
+$width-desktop-wide:    1380px;
+$width-max-content: 1420px; // 85px left padding + 1250px content + 85px right padding
+
+// Grid columns
+$pebbles-column-width:  8.333%; // 100% / 12 columns
+$pebbles-gutter-width:  20px;
+
+@mixin pebbles-span($columns) {
+    @include border-box;
+    float: left;
+    width: $pebbles-column-width * $columns;
+    padding-left: $pebbles-gutter-width / 2;
+    padding-right: $pebbles-gutter-width / 2;
+}
+
+// Pebbles content blocks
+.section,
+.content {
+    @include clearfix;
+    position: relative;
+}
+
+.content {
+    @include border-box;
+    margin: 0 auto;
+    padding: 20px;
+    min-width: $width-phone;
+
+    @media #{$mq-tablet} {
+        width: $width-tablet;
+    }
+
+    @media #{$mq-desktop} {
+        width: $width-desktop;
+    }
+
+    @media #{$mq-desktop-wide} {
+        width: $width-desktop-wide;
+    }
+}
+
+// Global nav
+.moz-global-nav {
+    @include open-sans;
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+
+    a:link,
+    a:visited {
+        color: #000;
+        font-weight: bold;
+        text-decoration: none;
+        border: 0;
+        padding: 0;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: #000;
+        text-decoration: underline;
+        transition: color 0.1s ease-in-out;
+    }
+
+    // Three-dotted nenu button
+    .nav-button-menu {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        float: left;
+        font-size: 0;
+        height: 25px;
+        margin: 13px 0;
+        padding: 0;
+        width: 50px;
+
+        .p1,
+        .p2,
+        .p3 {
+            transition: transform .2s ease-in-out;
+        }
+
+        &:hover,
+        &:active {
+            .p1 {
+                transform: translateX(4px);
+            }
+
+            .p2 {
+                transform: translateX(-3px);
+            }
+
+            .p3 {
+                transform: translateX(4px);
+            }
+        }
+
+        &:focus {
+            outline: none;
+
+            .p1,
+            .p2,
+            .p3 {
+                fill: #646464;
+            }
+        }
+
+        &::-moz-focus-inner {
+            border: none;
+        }
+
+        &.nav-hidden {
+            display: none;
+        }
+    }
+
+    // Mozilla wordmark logo
+    .nav-logo {
+        @include font-size(15px);
+        float: left;
+        height: 25px;
+        margin: 0 0 0 5px;
+        padding: 13px 0;
+
+        a {
+            @include image-replaced;
+            background: url('/static/img/mozilla-icon.png') top left no-repeat;
+            @include background-size(25px 25px);
+            display: block;
+            width: 25px;
+            height: 25px;
+            border: 0;
+        }
+
+        @media #{$mq-desktop} {
+            margin-left: 17px;
+
+            a {
+                @include background-size(auto, auto);
+                background-image: url('/static/img/mozilla-wordmark-black.svg');
+                width: 78px;
+            }
+        }
+    }
+
+    // Horizontal link menu container
+    .nav-horizontal-menu {
+        @include clearfix;
+        margin-left: 5px;
+        overflow: hidden;
+        padding: 10px 0;
+        position: relative;
+
+        @media #{$mq-tablet} {
+            padding-top: 25px;
+        }
+
+        @media #{$mq-desktop} {
+            margin-left: 17px;
+        }
+    }
+
+    // Primary horizontal links
+    .nav-primary-links {
+        @include font-size(16px);
+        display: none;
+        float: left;
+        list-style-type: none;
+        margin: 0 0 0 10px;
+        padding: 13px 0 0;
+
+        &> li {
+            display: inline-block;
+            line-height: 1.2;
+            padding: 0 20px 10px 0;
+
+            &:last-child {
+                padding-right: 0;
+            }
+
+            a:hover,
+            a:active,
+            a:focus {
+                text-decoration: none;
+            }
+
+            a:focus {
+                outline: none;
+            }
+        }
+
+        @media #{$mq-tablet} {
+            @include border-box;
+            display: block;
+            margin-left: 20px;
+            width: calc(100% - 370px);
+        }
+
+        @media #{$mq-desktop} {
+            width: calc(100% - 480px);
+        }
+
+        @media #{$mq-desktop-wide} {
+            margin-left: 40px;
+
+            &> li {
+                padding-right: 40px;
+
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+
+    // Class for legacy browser support
+    &.simple {
+        .nav-primary-links {
+            display: block;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        max-width: 1420px;
+        margin: 0 auto;
+    }
+}
+
+// Menu button animation open state
+.moz-nav-open .moz-global-nav .nav-button-menu {
+    .p1 {
+        transform: translateX(4px);
+    }
+
+    .p2 {
+        transform: translateX(-3px);
+    }
+
+    .p3 {
+        transform: translateX(4px);
+    }
+}
+
+// Customized Firefox download button for primary navigation.
+#global-nav-download-firefox {
+    float: right;
+    margin: 11px 20px 0 0;
+
+    .download-link:link,
+    .download-link:visited {
+        @include text-small;
+        background-color: #fff;
+        border-radius: 100px;
+        border: 2px solid $color-button-green;
+        color: $color-button-green;
+        display: inline-block;
+        font-weight: bold;
+        padding: .5em 20px;
+        text-decoration: none;
+        transition: color .1s ease-in-out, background-color .1s ease-in-out;
+
+        .download-title {
+            font-weight: bold;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $color-button-green;
+            color: #fff;
+            transition: color .1s ease-in-out, background-color .1s ease-in-out;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        margin-top: 5px;
+        margin-right: 60px;
+        width: 200px;
+
+        .download-link {
+            float: right;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        margin-right: 85px;
+    }
+}
+
+// Footer
+#colophon {
+    @include open-sans;
+    background: #000;
+    clear: both;
+    color: #fff;
+    line-height: 1.3;
+    margin: 0;
+    padding: 40px 0;
+    width: 100%;
+
+    a:link,
+    a:visited {
+        color: #fff;
+        font-weight: normal;
+        text-decoration: none;
+        border: 0;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    h5 {
+        color: #fff;
+        margin-bottom: .9em;
+
+        @media #{$mq-desktop} {
+            @include text-body-level2;
+        }
+
+        a:link,
+        a:visited {
+            font-weight: bold;
+        }
+    }
+
+    li {
+        list-style-type: none;
+        margin: 0 0 .8em;
+    }
+
+    nav {
+        @include border-box;
+        @include clearfix;
+        margin: 0 auto;
+        min-width: $width-phone;
+    }
+
+    section {
+        margin-bottom: 40px;
+    }
+
+    .logo {
+        margin-bottom: 40px;
+
+        a {
+            background: url('/static/img/mozilla-wordmark-white.svg') no-repeat;
+            @include background-size(100px, 32px);
+            @include image-replaced;
+            display: inline-block;
+            height: 32px;
+            width: 100px;
+        }
+    }
+
+    .social-links {
+        margin: 2em 0 0;
+
+        li {
+            display: inline-block;
+            margin-right: 20px;
+
+            a {
+                display: block;
+                @include image-replaced;
+                background-image: url('/media/img/logos/social/social-icon-sprite.svg');
+
+                &.twitter {
+                    background-position: 0 0;
+                    width: 18px;
+                    height: 15px;
+                }
+
+                &.instagram {
+                    background-position: 0 -25px;
+                    width: 19px;
+                    height: 19px;
+                }
+
+                &.youtube {
+                    background-position: 0 -54px;
+                    width: 19px;
+                    height: 13px;
+                }
+
+                &.facebook {
+                    background-position: 0 -77px;
+                    width: 10px;
+                    height: 19px;
+                }
+            }
+        }
+    }
+
+    .primary {
+        @include font-size(16px);
+    }
+
+    .secondary {
+        @include text-extra-small;
+    }
+
+    .small-links {
+        li {
+            display: inline;
+            padding-right: 20px;
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+    }
+
+    .license {
+        margin-bottom: 40px;
+
+        a:link,
+        a:visited {
+            color: #9b9b9b;
+        }
+    }
+
+    .lang-switcher {
+        font-weight: bold;
+
+        label {
+            display: inline-block;
+            margin: 0 20px 5px 0;
+        }
+
+        select {
+            border: none;
+            background: #ededed;
+        }
+
+        .js & button {
+            display: none;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .primary {
+            .logo,
+            section {
+                @include pebbles-span(4);
+                padding: 0 20px 0 0;
+            }
+        }
+
+        .secondary {
+            padding-top: 20px;
+        }
+
+        .license {
+            margin-bottom: 0;
+        }
+
+        .small-links {
+            @include pebbles-span(8);
+            padding: 0 20px 0 0;
+        }
+
+        .lang-switcher {
+            @include pebbles-span(4);
+            margin-top: 2.25em;
+            padding: 0 20px 0 0;
+        }
+    }
+}
+
+[dir='rtl'] #colophon {
+    @media #{$mq-tablet} {
+        .logo,
+        section,
+        .small-links,
+        .lang-switcher {
+            float: right;
+            padding: 0 0 0 20px;
+        }
+    }
+
+    .lang-switcher label {
+        margin: 0 0 5px 20px;
+    }
+
+    .social-links li {
+        margin: 0 0 0 20px;
+    }
+
+    .small-links li {
+        padding: 0 0 0 20px;
+    }
+}

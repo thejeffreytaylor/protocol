@@ -6,27 +6,20 @@
 
 
 // Standard content blocks
-.section,
-.content {
-    @include clearfix;
-    position: relative;
-}
-
-.content {
+.mzp-l-content {
     @include border-box;
+    @include clearfix;
     margin: 0 auto;
+    max-width: $content-max;
+    min-width: $content-xs;
     padding: 20px;
-    min-width: $width-phone;
+    position: relative;
 
-    @media #{$mq-tablet} {
-        padding: 20px 60px;
+    @media #{$media-md} {
+        padding: 20px $layout-lg;
     }
 
-    @media #{$mq-desktop} {
-        padding: 20px 85px;
-    }
-
-    @media #{$mq-desktop-wide} {
-        max-width: $width-max-content;
+    @media #{$media-lg} {
+        padding: 20px $layout-xl;
     }
 }

@@ -8,7 +8,7 @@
 .protosite-main {
     padding: 20px 4vw;
 
-    @media #{$mq-tablet} {
+    @media #{$media-md} {
         padding-left: 24vw;
     }
 }
@@ -31,7 +31,7 @@
         }
     }
 
-    @media #{$mq-tablet} {
+    @media #{$media-md} {
         -webkit-overflow-scrolling: touch;
         box-sizing: border-box;
         display: block;
@@ -58,7 +58,7 @@
         position: relative;
         width: 2.2em;
 
-        @media #{$mq-tablet} {
+        @media #{$media-md} {
             display: none;
         }
     }
@@ -71,7 +71,7 @@
 .protosite-nav-main-mozlogo {
     float: right;
 
-    @media #{$mq-tablet} {
+    @media #{$media-md} {
         float: none;
     }
 }
@@ -83,7 +83,7 @@
 .js .protosite-nav-main-menu {
     display: none;
 
-    @media #{$mq-tablet} {
+    @media #{$media-md} {
         display: block;
     }
 }
@@ -126,7 +126,7 @@
         @include text-body-level2;
     }
 
-    @media #{$mq-tablet} {
+    @media #{$media-md} {
         columns: 2 auto;
         column-gap: 30px;
     }
@@ -224,7 +224,7 @@
 .protosite-pattern {
     margin-bottom: 40px;
 
-    @media #{$mq-desktop} {
+    @media #{$media-lg} {
         margin-bottom: 60px;
     }
 

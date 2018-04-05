@@ -3,7 +3,10 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import
+    'tokens/colors',
+    'tokens/spacing',
+    'tokens/sizes',
+    'tokens/media-queries',
     'variables',
-    'colors',
     'functions',
     'mixins';
