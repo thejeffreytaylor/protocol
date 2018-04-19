@@ -22,12 +22,12 @@
     :link,
     :visited {
         color: #fff;
-        text-decoration: none;
+        border-bottom-width: 0;
 
         &:hover,
         &:focus {
             color: #eee;
-            text-decoration: underline;
+            border-bottom-width: 1px;
         }
     }
 
@@ -243,9 +243,19 @@
     @include text-display-level4;
 }
 
+.protosite-pattern-extra ul {
+    list-style: disc;
+    margin-left: 32px;
+
+    li {
+        margin-bottom: .5em;
+    }
+}
+
 .protosite-pattern-anchor {
     color: $color-text-primary;
     text-decoration: none;
+    border: 0;
     cursor: default;
 
     &:hover,

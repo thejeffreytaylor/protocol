@@ -107,6 +107,7 @@ $color-link-blue-dark: #175a77;
     &:active {
         border-color: $color-link-blue-dark;
         color: $color-link-blue-dark;
+        padding-bottom: 10px;
         text-decoration: none;
 
         &:after {

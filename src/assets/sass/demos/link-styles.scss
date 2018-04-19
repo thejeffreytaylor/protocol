@@ -1,0 +1,71 @@
+// Link styles demo
+
+@import '../protocol/includes/lib';
+@import '../protocol/protocol';
+
+
+span[class^='link'],
+span[class^='visited'] {
+    cursor: pointer;
+}
+
+.link,
+.visited {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &:focus {
+        outline: 1px dotted $color-text-primary;
+        text-decoration: underline;
+    }
+
+    &:active {
+        background-color: #f5f5f5;
+        text-decoration: underline;
+    }
+}
+
+.link {
+    color: $color-link;
+}
+
+.link-hover {
+    color: $color-link;
+    text-decoration: underline;
+}
+
+.link-focus {
+    color: $color-link;
+    text-decoration: underline;
+    outline: 1px dotted $color-text-primary;
+}
+
+.link-active {
+    color: $color-link;
+    background-color: #f5f5f5;
+    text-decoration: underline;
+}
+
+.visited {
+    color: $color-link-visited;
+}
+
+.visited-hover {
+    color: $color-link-visited;
+    text-decoration: underline;
+}
+
+.visited-active {
+    background-color: #f5f5f5;
+    color: $color-link-visited;
+    text-decoration: underline;
+}
+
+.visited-focus {
+    color: $color-link-visited;
+    outline: 1px dotted $color-text-primary;
+    text-decoration: underline;
+}
